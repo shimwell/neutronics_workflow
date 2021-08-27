@@ -14,10 +14,16 @@ my_source.energy = openmc.stats.Discrete([14e6], [1])
 neutronics_model = paramak_neutronics.NeutronicsModel(
     h5m_filename='stage_2_output/dagmc.h5m',
     source=my_source,
-    materials={"mat1": "eurofer"},
-    cell_tallies=["flux"],
-    simulation_batches=5,
-    simulation_particles_per_batch=1e4,
+    materials={
+        'inboard_tf_coils_mat': 'copper',
+        'center_column_shield_mat': 'WC',
+        'divertor_mat': 'eurofer',
+        'firstwall_mat': 'eurofer',
+        'blanket_mat': 'Li4SiO4',
+        'blanket_rear_wall_mat': 'eurofer'},
+    cell_tallies=['TBR'],
+    simulation_batches=2, # batches will need increasing to obtain accurate results
+    simulation_particles_per_batch=100,  # particles will need increasing to obtain accurate results
 )
 
 results = neutronics_model.simulate()

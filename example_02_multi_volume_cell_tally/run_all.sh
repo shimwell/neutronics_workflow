@@ -1,0 +1,3 @@
+python stage_1_create_cad.py
+python stage_2_convert_cad_to_neutronics.py
+python stage_3_run_neutronics_simulation.py
