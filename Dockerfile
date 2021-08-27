@@ -209,6 +209,7 @@ FROM dependencies as final
 
 
 COPY example_01_single_volume_cell_tally example_01_single_volume_cell_tally/
+COPY example_02_multi_volume_cell_tally example_02_multi_volume_cell_tally/
 
 
 # this helps prevent the kernal failing
