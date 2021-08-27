@@ -12,11 +12,9 @@ my_source.angle = openmc.stats.Isotropic()
 my_source.energy = openmc.stats.Discrete([14e6], [1])
 
 neutronics_model = paramak_neutronics.NeutronicsModel(
-    h5m_filename='dagmc.h5m',
+    h5m_filename='stage_2_output/dagmc.h5m',
     source=my_source,
-    materials={
-        "mat1": "eurofer",
-    },
+    materials={"mat1": "eurofer"},
     cell_tallies=["flux"],
     simulation_batches=5,
     simulation_particles_per_batch=1e4,

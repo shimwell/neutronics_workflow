@@ -8,9 +8,10 @@ from cad_to_h5m import cad_to_h5m
 
 cad_to_h5m(
     files_with_tags=[
-        {'filename':'steel.stp', 'material_tag':'mat1'},
-        {'filename':'graveyard.stp', 'material_tag':'graveyard'},
+        {'cad_filename':'stage_1_output/steel.stp', 'material_tag':'mat1'},
+        {'cad_filename':'stage_1_output/graveyard.stp', 'material_tag':'graveyard'},
     ],
-    h5m_filename='dagmc.h5m',
+    h5m_filename='stage_2_output/dagmc.h5m',
     cubit_path='/opt/Coreform-Cubit-2021.5/bin/'
 )
+

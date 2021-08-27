@@ -1,0 +1,61 @@
+
+# This CI will lauch a Docker image that contains all the dependencies required
+# within that image the pytest test suite is run 
+
+name: CI with install
+
+on:
+  pull_request:    
+    branches:
+    - develop
+    - main
+ 
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/fusion-energy/paramak-neutronics:dependencies
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: install package
+        run: |
+          python setup.py install
+
+      - name: run test_neutronics_model_cubit
+        run: |
+          pytest tests/test_neutronics_model_cubit.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      - name: run test_neutronics_model_pymoab
+        run: |
+          pytest tests/test_neutronics_model_pymoab.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      - name: run test_shape_neutronics
+        run: |
+          pytest tests/test_shape_neutronics.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      - name: run test_reactor_neutronics
+        run: |
+          pytest tests/test_reactor_neutronics.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      - name: run test_neutronics_utils
+        run: |
+          pytest tests/test_neutronics_utils.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      - name: run test_example_neutronics_simulations
+        run: |
+          pytest tests/test_example_neutronics_simulations.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+      # todo remove and add to new test yml file #RemiMethod
+      - name: run notebook_testing
+        run: |
+          pytest tests/notebook_testing.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
+
+
+      - name: upload code coverage
+        run: |
+          curl -s https://codecov.io/bash
+
+
+          

@@ -14,5 +14,5 @@ my_shape = paramak.ExtrudeStraightShape(
     distance = 180,
 )
 
-my_shape.export_stp('steel.stp')
-my_shape.export_graveyard('graveyard.stp')
+my_shape.export_stp('stage_1_output/steel.stp')
+my_shape.export_graveyard('stage_1_output/graveyard.stp')
