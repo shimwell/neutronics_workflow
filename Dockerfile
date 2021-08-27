@@ -204,7 +204,7 @@ WORKDIR /home/neutronics-workflow
 
 
 
-FROM dependencies as final
+FROM dependencies as ghcr.io/fusion-energy/neutronics-workflow:dependencies
 
 COPY example_01_single_volume_cell_tally example_01_single_volume_cell_tally/
 COPY example_02_multi_volume_cell_tally example_02_multi_volume_cell_tally/
