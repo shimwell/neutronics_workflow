@@ -207,11 +207,5 @@ WORKDIR /home/neutronics-workflow
 
 FROM dependencies as final
 
-
 COPY example_01_single_volume_cell_tally example_01_single_volume_cell_tally/
 COPY example_02_multi_volume_cell_tally example_02_multi_volume_cell_tally/
-
-
-# this helps prevent the kernal failing
-RUN echo "#!/bin/bash\n\njupyter lab --notebook-dir=/home/paramak-neutronics --port=8888 --no-browser --ip=0.0.0.0 --allow-root" >> /home/paramak-neutronics/docker-cmd.sh
-CMD bash /home/paramak-neutronics/docker-cmd.sh
