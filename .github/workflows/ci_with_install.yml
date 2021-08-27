@@ -14,48 +14,21 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/fusion-energy/paramak-neutronics:dependencies
+      image: ghcr.io/fusion-energy/neutronics-workflow:dependencies
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: install package
+
+      - name: run example_01_single_volume_cell_tally
         run: |
-          python setup.py install
-
-      - name: run test_neutronics_model_cubit
+          cd example_01_single_volume_cell_tally/
+          python stage_1_create_cad.py
+          python stage_2_convert_cad_to_neutronics.py
+          python stage_3_run_neutronics_simulation.py  
+        
+      - name: run example_02_multi_volume_cell_tally
         run: |
-          pytest tests/test_neutronics_model_cubit.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      - name: run test_neutronics_model_pymoab
-        run: |
-          pytest tests/test_neutronics_model_pymoab.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      - name: run test_shape_neutronics
-        run: |
-          pytest tests/test_shape_neutronics.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      - name: run test_reactor_neutronics
-        run: |
-          pytest tests/test_reactor_neutronics.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      - name: run test_neutronics_utils
-        run: |
-          pytest tests/test_neutronics_utils.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      - name: run test_example_neutronics_simulations
-        run: |
-          pytest tests/test_example_neutronics_simulations.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-      # todo remove and add to new test yml file #RemiMethod
-      - name: run notebook_testing
-        run: |
-          pytest tests/notebook_testing.py -v --cov=paramak_neutronics --cov-append --cov-report term --cov-report xml
-
-
-      - name: upload code coverage
-        run: |
-          curl -s https://codecov.io/bash
-
-
-          
+          cd example_02_multi_volume_cell_tally/
+          python stage_1_create_cad.py
+          python stage_2_convert_cad_to_neutronics.py
+          python stage_3_run_neutronics_simulation.py          
