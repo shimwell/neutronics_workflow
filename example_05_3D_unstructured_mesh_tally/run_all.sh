@@ -1,0 +1,9 @@
+python stage_1_create_cad.py
+
+export HDF5_DISABLE_VERSION_CHECK=1
+
+python stage_2_convert_cad_to_neutronics.py
+
+mbconvert stage_2_output/unstructured_mesh.cub unstructured_mesh.h5m
+
+python stage_3_run_neutronics_simulation.py

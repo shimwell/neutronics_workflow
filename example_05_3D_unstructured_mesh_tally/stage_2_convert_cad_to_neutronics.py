@@ -21,6 +21,5 @@ cad_to_h5m(
     make_watertight=False,
     h5m_filename='stage_2_output/dagmc.h5m',
     cubit_path='/opt/Coreform-Cubit-2021.5/bin/',
-    h5_filename='stage_2_output/unstructured_mesh.h5'
+    cubit_filename='stage_2_output/unstructured_mesh.cub'
 )
-

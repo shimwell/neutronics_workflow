@@ -13,10 +13,10 @@ my_source.energy = openmc.stats.Discrete([14e6], [1])
 
 neutronics_model = openmc_dagmc_wrapper.NeutronicsModel(
     h5m_filename='stage_2_output/dagmc.h5m',
-    h5_filename='stage_2_output/unstructured_mesh.h5',
+    tet_mesh_filename='stage_2_output/unstructured_mesh.h5m',
     source=my_source,
     materials={"mat1": "eurofer"},
-    mesh_tally_3d=["flux"],
+    mesh_tally_tet=["flux"],
 )
 
 results = neutronics_model.simulate(
