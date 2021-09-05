@@ -32,3 +32,11 @@ jobs:
           python stage_1_create_cad.py
           python stage_2_convert_cad_to_neutronics.py
           python stage_3_run_neutronics_simulation.py          
+
+      - name: run example_05_3D_unstructured_mesh_tally
+        run: |
+          cd example_05_3D_unstructured_mesh_tally/
+          python stage_1_create_cad.py
+          python stage_2_convert_cad_to_neutronics.py
+          mbconvert stage_2_output/unstructured_mesh.cub stage_2_output/unstructured_mesh.h5m
+          python stage_3_run_neutronics_simulation.py          
