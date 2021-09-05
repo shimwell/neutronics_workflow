@@ -3,7 +3,7 @@
 # the neutronics results to record (know as tallies).
 
 import openmc
-import paramak_neutronics
+import openmc_dagmc_wrapper
 
 # defines a simple point source
 my_source = openmc.Source()
@@ -11,7 +11,7 @@ my_source.space = openmc.stats.Point((0, 0, 0))
 my_source.angle = openmc.stats.Isotropic()
 my_source.energy = openmc.stats.Discrete([14e6], [1])
 
-neutronics_model = paramak_neutronics.NeutronicsModel(
+neutronics_model = openmc_dagmc_wrapper.NeutronicsModel(
     h5m_filename='stage_2_output/dagmc.h5m',
     source=my_source,
     materials={"mat1": "eurofer"},
