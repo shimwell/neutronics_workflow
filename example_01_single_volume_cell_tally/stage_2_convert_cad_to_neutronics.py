@@ -12,6 +12,7 @@ cad_to_h5m(
         {'cad_filename':'stage_1_output/graveyard.stp', 'material_tag':'graveyard'},
     ],
     h5m_filename='stage_2_output/dagmc.h5m',
-    cubit_path='/opt/Coreform-Cubit-2021.5/bin/'
+    cubit_path='/opt/Coreform-Cubit-2021.5/bin/',
+    imprint=False, # as there are no geometry contact between volumes
 )
 
