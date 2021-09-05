@@ -1,4 +1,4 @@
 
 paramak
-paramak-neutronics
+openmc-dagmc-wrapper
 cad_to_h5m

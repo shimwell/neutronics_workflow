@@ -170,7 +170,7 @@ printf '/MOAB/build/bin:$PATH"' >> ~/.bashrc
 printf '/DAGMC/bin:$PATH"' >> ~/.bashrc
 
 pip install paramak
-pip install paramak-neutronics
+pip install openmc-dagmc-wrapper
 
 
 # optional install of Cubit Coreform
