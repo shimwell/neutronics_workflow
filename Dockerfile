@@ -189,6 +189,9 @@ RUN printf 'Fri May 28 2021' >> /root/.config/Coreform/licenses/cubit-learn.lic
 # helps to identify Cubit related errrors
 ENV CUBIT_VERBOSE=5
 
+# needed to prevent hdf5 conflict between MOAB and Cubit
+ENV HDF5_DISABLE_VERSION_CHECK=1
+
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
@@ -208,3 +211,4 @@ FROM ghcr.io/fusion-energy/neutronics-workflow:dependencies as final
 
 COPY example_01_single_volume_cell_tally example_01_single_volume_cell_tally/
 COPY example_02_multi_volume_cell_tally example_02_multi_volume_cell_tally/
+COPY example_05_3D_unstructured_mesh_tally example_05_3D_unstructured_mesh_tally/
