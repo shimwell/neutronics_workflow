@@ -21,10 +21,11 @@ neutronics_model = openmc_dagmc_wrapper.NeutronicsModel(
         'firstwall_mat': 'eurofer',
         'blanket_mat': 'Li4SiO4',
         'blanket_rear_wall_mat': 'eurofer'},
-    cell_tallies=['TBR'],
+    cell_tallies=['TBR']
+)
+
+results = neutronics_model.simulate(
     simulation_batches=2, # batches will need increasing to obtain accurate results
     simulation_particles_per_batch=100,  # particles will need increasing to obtain accurate results
 )
-
-results = neutronics_model.simulate()
 print(results)
