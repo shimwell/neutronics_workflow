@@ -15,10 +15,11 @@ neutronics_model = openmc_dagmc_wrapper.NeutronicsModel(
     h5m_filename='stage_2_output/dagmc.h5m',
     source=my_source,
     materials={"mat1": "eurofer"},
-    cell_tallies=["flux"],
+    cell_tallies=["flux"]
+)
+
+results = neutronics_model.simulate(
     simulation_batches=5,
     simulation_particles_per_batch=1e4,
 )
-
-results = neutronics_model.simulate()
 print(results)
