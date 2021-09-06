@@ -10,17 +10,17 @@ import json
 with open('stage_1_output/manifest.json') as json_file:
     neutronics_description = json.load(json_file)
 
-list_of_components = ['stage_1_output/blanket_rear_wall.stp']#, 'stage_1_output/firstwall.stp']
+list_of_components = ['stage_1_output/divertor.stp', 'stage_1_output/firstwall.stp','stage_1_output/blanket.stp']
 
 # modifies the names of the stp files to include the output dir
 for entry in neutronics_description:
     entry['cad_filename'] = 'stage_1_output/' + entry['cad_filename']
     if entry['cad_filename'] in list_of_components:
-        entry['tet_mesh'] = "size 10"
+        entry['tet_mesh'] = "size 50"
 
 cad_to_h5m(
     files_with_tags=neutronics_description,
-    make_watertight=False,
+    make_watertight=True,
     h5m_filename='stage_2_output/dagmc.h5m',
     cubit_path='/opt/Coreform-Cubit-2021.5/bin/',
     cubit_filename='stage_2_output/unstructured_mesh.cub'
