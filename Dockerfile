@@ -1,8 +1,10 @@
-# This Dockerfile creates an enviroment / dependancies needed to run the 
-# neutronics-workflow package.
+# This Dockerfile creates an enviroment / dependancies needed to run the
+# neutronics-workflow.
 
-# This dockerfile provides an API endpoint that accepts arguments to drive
-# the neutronics model production and subsequent simulation
+# This Dockerfile can be build locally or a prebuild image can be downloaded
+
+# To download the prebuild image
+# docker pull ghcr.io/fusion-energy/neutronics-workflow
 
 # To build this Dockerfile into a docker image:
 # docker build -t neutronics-workflow .
@@ -10,11 +12,23 @@
 # To build this Dockerfile and use multiple cores to compile:
 # docker build -t neutronics-workflow --build-arg compile_cores=7 .
 
-# To run the resulting Docker image:
+# To run the locally built Docker image:
 # docker run -it neutronics-workflow
 
-# Run with the following command for a jupyter notebook interface
-# sudo docker run -it -v $PWD:/local_dir ghcr.io/fusion-energy/neutronics-workflow:dependencies
+# To run the prebuilt Docker image:
+# docker run -it ghcr.io/fusion-energy/neutronics-workflow
+
+# Run with the following command for a shared folder between base OS and the
+# locally built docker image
+# docker run -it -v $PWD:/local_dir neutronics-workflow
+
+# Run with the following command for a shared folder between base OS and the
+# locally built docker image
+# docker run -it -v $PWD:/local_dir neutronics-workflow
+
+# Run with the following command for a shared folder between base OS and the
+# prebuild docker image
+# docker run -it -v $PWD:/local_dir ghcr.io/fusion-energy/neutronics-workflow
 
 # TODO save build time by basing this on FROM ghcr.io/fusion-energy/paramak:latest
 # This can't be done currently as the base images uses conda installs for moab / dagmc which don't compile with OpenMC
