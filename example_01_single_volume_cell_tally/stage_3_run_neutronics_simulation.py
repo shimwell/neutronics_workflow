@@ -18,8 +18,11 @@ neutronics_model = openmc_dagmc_wrapper.NeutronicsModel(
     cell_tallies=["flux"]
 )
 
-results = neutronics_model.simulate(
+neutronics_model.simulate(
     simulation_batches=5,
     simulation_particles_per_batch=1e4,
 )
+
+results = neutronics_model.process_results()
+
 print(results)
